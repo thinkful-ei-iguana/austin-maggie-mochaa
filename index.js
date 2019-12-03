@@ -7,45 +7,58 @@ const app = express();
 app.use(morgan('common'));
 
 app.get('/apps', (req, res) => {
-  const { sort, genre } = req.query;
+  const { sort, genres } = req.query;
 
   console.log('sort is', sort);
+  console.log('genre is', genres);
 
   if (sort && !['rating', 'app'].includes(sort)) {
-    return res.status(400).send('Sort must be either rating or app');
+    return res
+      .status(400)
+      .send('Sort must be either rating or app');
   }
+
+  const validGenres = ['Action', 'Puzzle', 'Strategy', 'Casual', 'Arcade', 'Card'];
 
   let sortedArray;
 
-  // if (sort === 'app') {
-  function compareApp(a, b) {
-    return a.App.localeCompare(b.App);
+  if (genres) {
+    if (!validGenres.find(option => option.toLowerCase() === genres.toLowerCase())) {
+      return res
+        .status(400)
+        .json({ message: `Valid genres include: ${validGenres}` });
+    }
+    sortedArray = appData.filter(app =>
+      app
+        .Genres
+        .toLowerCase()
+        .includes(req.query.genres.toLowerCase())
+    );
   }
 
-  sortedArrayApp = appData.sort(compareApp);
+  // return full array
+
+
+  if (sort === 'app') {
+    // eslint-disable-next-line no-inner-declarations
+    function compareApp(a, b) {
+      return a.App.localeCompare(b.App);
+    }
+    sortedArray = appData.sort(compareApp);
+  }
+
+  if (sort === 'rating') {
+    // eslint-disable-next-line no-inner-declarations
+    function compareRating(a, b) {
+      return a.Rating - b.Rating;
+    }
+    sortedArray = appData.sort(compareRating);
+  }
+
+
   res.json(sortedArray);
-  // }
-
-
-  // else if (sort === 'rating') {
-  function compareRating(a, b) {
-    return a.App.localeCompare(b.App);
-  }
-  sortedArrayRating = appData.sort(compareRating);
-  res.json(sortedArrayRating);
-  // }
-
-
 
 });
-
-
-//   } else {
-//   const results = appData.map(app => app);
-//   res.set('Content-Type', 'application/json');
-//   res.json(results);
-// }
-
 
 app.listen(8000, () => {
   console.log('Listening on PORT 8000');
