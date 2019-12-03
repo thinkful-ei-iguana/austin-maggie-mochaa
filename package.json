@@ -1,0 +1,29 @@
+{
+  "name": "Working-with-Express-response-object",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app",
+    "start": "nodemon app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thinkful-ei-iguana/Anthony-Maggie-Playstore.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thinkful-ei-iguana/Anthony-Maggie-Playstore/issues"
+  },
+  "homepage": "https://github.com/thinkful-ei-iguana/Anthony-Maggie-Playstore#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "morgan": "^1.9.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.1"
+  }
+}
