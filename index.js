@@ -7,7 +7,8 @@ const app = express();
 app.use(morgan('common'));
 
 app.get('/apps', (req, res) => {
-  const { sort, genres } = req.query;
+  let { sort = "", genres } = req.query;
+  sort = sort.toLowerCase();
 
   console.log('sort is', sort);
   console.log('genre is', genres);
@@ -42,7 +43,10 @@ app.get('/apps', (req, res) => {
   if (sort === 'app') {
     // eslint-disable-next-line no-inner-declarations
     function compareApp(a, b) {
-      return a.App.localeCompare(b.App);
+      if (a.App > b.App) {
+        return 1;
+      }
+      else return -1;
     }
     sortedArray = appData.sort(compareApp);
   }
@@ -55,6 +59,7 @@ app.get('/apps', (req, res) => {
     sortedArray = appData.sort(compareRating);
   }
 
+  sortedArray = appData;
 
   res.json(sortedArray);
 
