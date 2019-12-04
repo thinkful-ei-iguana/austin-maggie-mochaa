@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test":"mocha",
     "dev": "nodemon app",
     "start": "nodemon app"
   },
@@ -24,6 +24,7 @@
     "morgan": "^1.9.1"
   },
   "devDependencies": {
+    "mocha": "^6.2.2",
     "nodemon": "^2.0.1"
   }
 }
