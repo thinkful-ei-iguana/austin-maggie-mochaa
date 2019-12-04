@@ -8,7 +8,7 @@ describe('APP', () => {
   describe('GET /apps', () => {
     it('should return an array of apps', () => {
       return supertest(app)
-        .get('/apps')
+        .get('/apps?sort=app')
         .expect(200)
         .expect('Content-Type', /json/)
         .then(res => {
@@ -20,17 +20,17 @@ describe('APP', () => {
     });
 
     it('should return 400 if `sort` query is invalid', () => {
-      supertest(app)
-        .get('/app')
+       return supertest(app)
+        .get('/apps')
         .query({ sort: 'invalid' })
-        .expect(400, { message: 'Sort must be either rating or app' });
+        .expect(400, 'Sort must be either rating or app');
     });
 
     const validSortValues = ['App', 'Rating'];
     validSortValues.forEach(sortValue => {
       it(`should return array of apps sorted by ${sortValue}`, () => {
-        supertest(app)
-          .get('/books')
+         return supertest(app)
+          .get('/apps')
           .query({ sort: sortValue })
           .expect(200)
           .then(res => {
