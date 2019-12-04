@@ -7,7 +7,7 @@ const app = require('../index');
 describe('APP', () => {
   describe('GET /apps', () => {
     it('should return an array of apps', () => {
-      supertest(app)
+      return supertest(app)
         .get('/apps')
         .expect(200)
         .expect('Content-Type', /json/)

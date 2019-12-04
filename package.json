@@ -1,12 +1,12 @@
-{
-  "name": "Working-with-Express-response-object",
+{ 
+  "name": "austin-maggie-mochaa",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
-    "dev": "nodemon app",
-    "start": "nodemon app"
+    "test":"mocha",
+    "start": "node server.js",
+    "dev": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -24,12 +24,7 @@
     "morgan": "^1.9.1"
   },
   "devDependencies": {
-    "chai": "^4.2.0",
     "mocha": "^6.2.2",
-    "nodemon": "^2.0.1",
-    "supertest": "^4.0.2"
-  },
-  "directories": {
-    "test": "test"
+    "nodemon": "^2.0.1"
   }
 }

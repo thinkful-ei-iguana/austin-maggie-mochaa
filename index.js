@@ -60,8 +60,6 @@ app.get('/apps', (req, res) => {
 
 });
 
-app.listen(8000, () => {
-  console.log('Listening on PORT 8000');
-});
+
 
 module.exports = app;
